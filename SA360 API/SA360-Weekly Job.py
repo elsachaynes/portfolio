@@ -7,7 +7,7 @@
 # @hidden_cell
 # The project token is an authorization token that is used to access project resources like data sources, connections, and used by platform APIs.
 from project_lib import Project
-project = Project(project_id='85c22417-fa77-4c5e-839a-0df65f888eea', project_access_token='p-edb2d677a5e0da8b0928136b8cce06e89a50b8cd')
+project = Project(project_id='85c22417-fa77-4c5e-839a-0df65f888eea', project_access_token=#MASKED#)
 pc = project.project_context
 
 
