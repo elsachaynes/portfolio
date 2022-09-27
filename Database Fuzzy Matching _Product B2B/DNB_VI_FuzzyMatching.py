@@ -73,7 +73,7 @@ dnbFinal = pd.read_csv(outputpath + '\dnbFinal_exactmatches.csv',
                        dtype={'DUNS_Number': object,
                               'DUNS_CompanyPhone': object})
 # %% Import SalesConnect data
-"""
+
 sc = pd.read_csv(inputpath + '\VI_SalesConnect.csv',
                  parse_dates=['Rec_Updt_Dt'])
 sc.info()
@@ -85,7 +85,7 @@ scFinal = sc[['ID', 'AccountID', 'LeadID', 'BrokerID', 'CompanyName',
 
 scFinal.info()
 del(sc)
-"""
+
 
 # Saved previous work
 scFinal = pd.read_csv(outputpath + '\scFinal_exactmatches.csv',
@@ -95,7 +95,7 @@ scFinal = pd.read_csv(outputpath + '\scFinal_exactmatches.csv',
 scFinal.info()
 # %% Set up match vectors
 
-"""
+
 def create_match_vector_on_dnb(vector_name, var1, var2):
     global dnbFinal
     dnbFinal[vector_name] = np.where(dnbFinal[var1].notnull() &
@@ -131,9 +131,9 @@ create_match_vector_on_dnb('DNB_Name_Addr', 'DUNS_CompanyName',
 create_match_vector_on_sc('SC_Name_Addr1', 'CompanyName', 'CompanyAddr_1')
 create_match_vector_on_sc('SC_Name_Addr2', 'CompanyName', 'CompanyAddr_2')
 create_match_vector_on_sc('SC_Name_Addr3', 'CompanyName', 'CompanyAddr_3')
-"""
+
 # %% Exact Matching
-"""
+
 dnbFinal['Match'] = 0
 scFinal['Match'] = 0
 
@@ -195,7 +195,7 @@ exact_match('DNB_Name_Addr', 'SC_Name_Addr3')  # 1086
 # Matches may be duplicates with multiple ID numbers for the same company
 dnbFinal.to_csv(outputpath + '\dnbFinal_exactmatches.csv')
 scFinal.to_csv(outputpath + '\scFinal_exactmatches.csv')
-"""
+
 # %% Fuzzy Matching
 
 
@@ -309,7 +309,7 @@ def create_fuzzy_match_vector_sc(SC_varname):
 # %% Fuzzy Matching: (1) Name+Phone
 # Name+Phone 1 of 2
 # Complete
-"""
+
 # Updated list for matching
 dnbUnmatched = dnbFinal[dnbFinal['Match'] == 0]
 DNB_Name_Phone = create_fuzzy_match_vector_dnb('DNB_Name_Phone')
@@ -324,10 +324,10 @@ match_NP_1 = fuzzy_match_join(match_NP_1, 'DNB_Name_Phone', 'SC_Name2_Phone',
 # 1131 cumulative matches
 dnbFinal.to_csv(outputpath + '\dnbFinal_exactmatches.csv')
 scFinal.to_csv(outputpath + '\scFinal_exactmatches.csv')
-"""
+
 # Name+Phone 2 of 2
 # Incomplete
-"""
+
 # Updated list for matching
 dnbUnmatched = dnbFinal[dnbFinal['Match'] == 0]
 DNB_Name_Phone = create_fuzzy_match_vector_dnb('DNB_Name_Phone')
@@ -341,11 +341,11 @@ match_NP_2 = fuzzy_match_join(match_NP_2, 'DNB_Name_Phone', 'SC_Name1_Phone',
 # 1896 cumulative matches
 dnbFinal.to_csv(outputpath + '\dnbFinal_exactmatches.csv')
 scFinal.to_csv(outputpath + '\scFinal_exactmatches.csv')
-"""
+
 # %% Fuzzy Matching: (2) Name+Address
 # Name+Address 1 of 3 
 # Incomplete
-"""
+
 # Updated list for matching
 dnbUnmatched = dnbFinal[dnbFinal['Match'] == 0]
 DNB_Name_Addr = create_fuzzy_match_vector_dnb('DNB_Name_Addr')
@@ -359,10 +359,10 @@ match_NA_1 = fuzzy_match_join(match_NA_1, 'DNB_Name_Addr', 'SC_Name_Addr1',
 # 2037 cumulative matches
 dnbFinal.to_csv(outputpath + '\dnbFinal_exactmatches.csv')
 scFinal.to_csv(outputpath + '\scFinal_exactmatches.csv')
-"""
+
 # Name+Address 2 of 3
 # Complete
-"""
+
 # Updated list for matching
 dnbUnmatched = dnbFinal[dnbFinal['Match'] == 0]
 DNB_Name_Addr = create_fuzzy_match_vector_dnb('DNB_Name_Addr')
@@ -376,10 +376,10 @@ match_NA_2 = fuzzy_match_join(match_NA_2, 'DNB_Name_Addr', 'SC_Name_Addr2',
 # 2258 cumulative matches
 dnbFinal.to_csv(outputpath + '\dnbFinal_exactmatches.csv')
 scFinal.to_csv(outputpath + '\scFinal_exactmatches.csv')
-"""
+
 # Name+Address 3 of 3 
 # Complete (no new matches)
-"""
+
 # Updated list for matching
 dnbUnmatched = dnbFinal[dnbFinal['Match'] == 0] 
 DNB_Name_Addr = create_fuzzy_match_vector_dnb('DNB_Name_Addr')
@@ -390,11 +390,11 @@ match_NA_3 = pd.DataFrame.from_dict(Dict_NA_3)
 match_NA_3.to_csv(inputpath + '\Matches_NA_3.csv')
 match_NA_3 = fuzzy_match_join(match_NA_3, 'DNB_Name_Addr', 'SC_Name_Addr3',
                               'DNB_Name_Addr_Fuzzy', 'SC_Name_Addr3_Fuzzy')
-"""
+
 #%% Fuzzy Matching: (3) Name+DUNS
 # Name+DUNS 1 of 1
 # Complete
-"""
+
 # Updated list for matching
 dnbUnmatched = dnbFinal[dnbFinal['Match'] == 0]
 DNB_Name_ID = create_fuzzy_match_vector_dnb('DNB_Name_ID')
@@ -409,7 +409,7 @@ match_NI = fuzzy_match_join(match_NI, 'DNB_Name_ID', 'SC_Name_ID',
 # 2206 cumulative matches
 dnbFinal.to_csv(outputpath + '\dnbFinal_exactmatches.csv')
 scFinal.to_csv(outputpath + '\scFinal_exactmatches.csv')
-"""
+
 # %% Clean DNB to one row per DUNS_Number
 
 # 1 row per unique SC ID
@@ -565,13 +565,13 @@ dnbMatchedFinal.to_csv(outputpath + '\DNB_Matched_Final.csv')
 # Numerator: count of unique DUNS_Numbers with at least 1 SC ID
 # Denominator: count of unique DUNS_Numbers
 pct_dnb_in_sc = (dnbMatchedFinal['Match'].sum() / len(dnbMatchedFinal))*100
-print(pct_dnb_in_sc)  # 27.01%
+print(pct_dnb_in_sc)  
 
 # 2. What % of [...] are current KP accounts?
 # Numerator: count of unique DUNS_Numbers where SC ID is an Account ID
 # Demoninator: count of unique DUNS_Numbers
 pct_dnb_kpAcct = (dnbMatchedFinal['Account_Flag'].sum() / len(dnbMatchedFinal))*100
-print(pct_dnb_kpAcct)   # 19.44%
+print(pct_dnb_kpAcct)   
 
 # Active accounts vs opportunities vs. termed accts
 
@@ -579,7 +579,7 @@ print(pct_dnb_kpAcct)   # 19.44%
 # Numerator: count of unique DUNS_Numbers where SC ID is a Lead ID
 # Demoninator: count of unique DUNS_Numbers
 pct_dnb_kpBkr = (dnbMatchedFinal['Broker_Flag'].sum() / len(dnbMatchedFinal))*100
-print(pct_dnb_kpBkr)  # 0.87%
+print(pct_dnb_kpBkr) 
 
 # active vs. termed? # eligibles on open opps?
 
@@ -587,7 +587,7 @@ print(pct_dnb_kpBkr)  # 0.87%
 # Numerator: count of unique DUNS_Numbers where SC ID is a Lead ID
 # Demoninator: count of unique DUNS_Numbers
 pct_dnb_kpLead = (dnbMatchedFinal['Lead_Flag'].sum() / len(dnbMatchedFinal))*100
-print(pct_dnb_kpLead)  # 7.67%
+print(pct_dnb_kpLead)  
 
 # Year/Month of the KP leads
 
@@ -598,7 +598,4 @@ print(pct_dnb_kpLead)  # 7.67%
 # % of SC leads/accounts
 
 # BW metrics for matches?
-
-
-#%% Import all-visit data
 

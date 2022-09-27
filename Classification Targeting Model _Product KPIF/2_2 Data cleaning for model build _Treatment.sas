@@ -22,7 +22,7 @@
 /* -------------------------------------------------------------------------------------------------*/
 
 	* Output;
-	%let output_files = /gpfsFS2/sasdata/nfs/ndc_grid/po_imca_digital/EHaynes/__Models/KPIF_EmailTargeting_2022;
+	%let output_files = ##MASKED##;
 	libname output "&output_files";
 
 /* -------------------------------------------------------------------------------------------------*/
@@ -231,24 +231,6 @@
 		where OFFR_NM = 'OPEN ENROLLMENT';
 		run;
 
-	/* DM OE -- Sept/Nov 2018 (for py OE 2020) NOT AVAILABLE IN MARS
-		DM OE -- Sept/Nov 2019 (for py OE 2021) OFFR_NM = OE DIRECT MAIL and month(PROMO_START_DT) in (9,10,11,12)
-		DM OE -- Sept 2020 (for py OE 2022) OFFR_NM = OE DIRECT MAIL in (9,10,11,12)
-			>>> DM OE -- Oct 2021 (for py OE 2023) OFFR_NM = OPEN ENROLMENT w/ 1 'L' 
-
-		EM OE -- Nov/Dec 2018 (for py OE 2020) NOT AVAILABLE IN MARS
-		EM OE -- Oct 2019 (for py OE 2021) OFFR_NM = OE EMAIL 
-		EM OE -- Oct/Dec 2020 (for py OE 2022) OFFR_NM = KPIF EMAIL and MONTH(PROMO_START_DT) in (10,12)
-			>>> EM OE -- Dec 2021 (for py OE 2023) OFFR_NM = OE EMAIL or OPEN ENROLLMENT w/ 2 'L's
-
-		EM SEP -- April-Sept 2019 (for py OE 2020) OFFR_NM = KPIF EMAIL and month(promo_start_dt) ne (10,12)
-		EM SEP -- Mar-Sept 2020 (for py OE 2021) OFFR_NM = KPIF EMAIL and month(promo_start_dt) ne (10,12)
-		EM SEP -- Feb-Sept 2021 (for py OE 2022) OFFR_NM = KPIF_SEP_EM
-			>>> EM SEP -- Feb-Sept 2022 (for py OE 2023) 
-	*/
-
-/*	,'SMU OE NOTICE','WBL_DAILY'*/
-
 	proc sql;
 	create table rollup_ph_py as
 	select distinct
@@ -309,11 +291,6 @@
 /* -------------------------------------------------------------------------------------------------*/
 /*  DM promotion current year                                                                       */
 /* -------------------------------------------------------------------------------------------------*/
-
-	/* DM OE -- Sept/Nov 2019 (for cy OE 2020) OFFR_NM = OE DIRECT MAIL
-		DM OE -- Sept 2020 (for cy OE 2021) OFFR_NM = OE DIRECT MAIL
-		DM OE -- Oct 2021 (for cy OE 2022) OFFR_NM = OPEN ENROLMENT w/ 1 'L'
-	*/
 
 	proc sql;
 	create table rollup_ph_cy_dm as

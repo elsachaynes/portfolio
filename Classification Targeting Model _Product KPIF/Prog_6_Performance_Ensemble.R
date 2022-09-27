@@ -258,45 +258,4 @@ DF_FM <- FinalizeEnsemble(DF_FM)
 DF_RW <- FinalizeEnsemble(DF_RW)
 DF    <- rbind(DF_FM,DF_RW)
 
-# %% Format for upload
-Epsilon.Output <- DF %>% 
-                  mutate(PROBABILITY_SCORE_VALUE = round(prediction,2),
-                         TAPESTRY_CODE = NA,
-                         TAPESTRY_DESC = NA) %>%
-                  rename(AGILITY_INDIVIDUAL_ID = AGLTY_INDIV_ID,
-                         MODEL_SCORE_VALUE = prediction,
-                         MODEL_DECILE_VALUE = decile,
-                         MODEL_PERCENTILE_VALUE = percentile) %>%
-                  select(AGILITY_INDIVIDUAL_ID,MODEL_SCORE_VALUE,
-                         MODEL_DECILE_VALUE,MODEL_PERCENTILE_VALUE,TAPESTRY_CODE,
-                         TAPESTRY_DESC,PROBABILITY_SCORE_VALUE)
-head(Epsilon.Output)
-# Max lengths accepted: AGILITY_INDIVIDUAL_ID (15), MODEL_SCORE_VALUE (26), MODEL_DECILE_VALUE (2), MODEL_PERCENTILE_VALUE (3), 
-# TAPESTRY_CODE (2), TAPESTRY_DESC (40), PROBABILITY_SCORE_VALUE (10)
-apply(Epsilon.Output, 2, function(x) max(nchar(x))) 
 
-# Check for dupes
-dupes <- Epsilon.Output %>% get_dupes(AGILITY_INDIVIDUAL_ID) 
-dupes <- merge(x=dupes,y=DF,by.x="AGILITY_INDIVIDUAL_ID",by.y="AGLTY_INDIV_ID") # it's the old_model_decile
-Epsilon.Output <- Epsilon.Output %>% distinct(., .keep_all = TRUE) # remove dupes
-Epsilon.Output %>% get_dupes(AGILITY_INDIVIDUAL_ID) # re-check for dupes
-remove(dupes)
-
-Epsilon.Header <- DF %>%
-                  mutate(MODEL_MAINTAINER = 'IMC ANALYTICS',
-                         MODEL_CREATOR = 'IMC ANALYTICS',
-                         MODEL_DATE = '20220909',
-                         BUSINESS_LINE_CD = 'I') %>%
-                  rename(MODEL_VERSION_NUM = MODEL_NUMBER,
-                         MODEL_DESCRIPTION = MODEL_NAME) %>%
-                  select(MODEL_VERSION_NUM,MODEL_DESCRIPTION,MODEL_MAINTAINER,
-                         MODEL_CREATOR,MODEL_DATE,BUSINESS_LINE_CD) %>%
-                  slice(1)
-head(Epsilon.Header)
-
-## Export
-data.table::fwrite(Epsilon.Output,file='kais.imsr.20220909.a.NL_KPIF_EM_ENROLL_MODEL.01of01.1.dat',sep='|',col.names = FALSE) #3 minutes
-data.table::fwrite(Epsilon.Header,file='kais.mmsr.20220909.a.NL_KPIF_EM_ENROLL_MODEL.01of01.1.dat',sep='|',col.names = FALSE) #3 minutes
-remove(Epsilon.Header)
-remove(Epsilon.Output) 
-remove(Scoring.Data.Combined)

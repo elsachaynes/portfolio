@@ -8,7 +8,7 @@
 /*  Purpose:            Compiles data from MARS Promotion and Promotion History for the KPIF EM     */
 /*                      OE 2023 Targeting model.                                                    */
 /*                                                                                                  */
-/*  Inputs:             Alex D. provided excel campaign files with promo ids for OE 2021-2022.      */
+/*  Inputs:             ### provided excel campaign files with promo ids for OE 2021-2022.          */
 /*                                                                                                  */
 /* -------------------------------------------------------------------------------------------------*/	
 /*  Notes:              Targeting model will use 3 years of historical data from OE 2020-2022.      */
@@ -23,18 +23,18 @@
 /* -------------------------------------------------------------------------------------------------*/
 
 	* Input;
-	%include '/gpfsFS2/home/c156934/password.sas';
-	libname MARS sqlsvr DSN='SQLSVR4685' SCHEMA='dbo' user="CS\C156934" password="&winpwd"
+	%include '##';
+	libname MARS sqlsvr DSN='SQLSVR4685' SCHEMA='dbo' user="##" password="&winpwd"
 	     qualifier='MARS' readbuff=5000 insertbuff=5000 dbcommit=1000; run;
-	libname WS sqlsvr datasrc='WS_NYDIA' SCHEMA='dbo' user="CS\C156934" password="&winpwd"
+	libname WS sqlsvr datasrc='WS_NYDIA' SCHEMA='dbo' user="##" password="&winpwd"
 	     qualifier='WS_EHAYNES' readbuff=5000 insertbuff=5000 dbcommit=1000; run;
-	libname ESRI sqlsvr DSN='WS_NYDIA' SCHEMA='dbo' user="CS\C156934" password="&winpwd"
+	libname ESRI sqlsvr DSN='WS_NYDIA' SCHEMA='dbo' user="##" password="&winpwd"
 	     qualifier='ESRI_TAPESTRY' readbuff=5000 insertbuff=5000 dbcommit=1000; run;
-	libname ELARA sqlsvr DSN='SQLSVR4656' SCHEMA='dbo' user='CS\C156934' password="&winpwd"
+	libname ELARA sqlsvr DSN='SQLSVR4656' SCHEMA='dbo' user='##' password="&winpwd"
      qualifier='ELARA' readbuff=5000 insertbuff=5000 dbcommit=1000; run;
 
 	* Output;
-	%let output_files = /gpfsFS2/sasdata/nfs/ndc_grid/po_imca_digital/EHaynes/__Models/KPIF_EmailTargeting_2022;
+	%let output_files = ##;
 	libname output "&output_files";
 
 /* -------------------------------------------------------------------------------------------------*/

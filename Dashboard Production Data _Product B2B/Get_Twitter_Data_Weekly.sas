@@ -248,7 +248,7 @@
 		%Append_Import;
 
 	%check_for_data(twitter.twitter_clean,=0,No records in twitter_clean);
-data look; set twitter.twitter_clean; rename 'Ad name'n = Ad_Name Objective = Campaign_Objective Engagements = Total_Engagements; run;
+
 %end; /* (1) */
 %if &cancel= %then %do; /* (2) */
 
@@ -1460,7 +1460,7 @@ data look; set twitter.twitter_clean; rename 'Ad name'n = Ad_Name Objective = Ca
 			file outbox
 
 			 /* Overrides value in filename statement */
-			to=('elsa.c.haynes@kp.org','chad.x.hollingsworth@kp.org')
+			to=(##MASKED##)
 			subject=" SUCCESSFUL: Exec Get_Twitter_Data_Weekly Manual Process"
 			attach=("&attach1." CT="APPLICATION/MSEXCEL" EXT="xlsx"
 /*					"&attach2." CT="text/plain" EXT="txt"*/
@@ -1482,7 +1482,7 @@ data look; set twitter.twitter_clean; rename 'Ad name'n = Ad_Name Objective = Ca
 			data _null_;
 			file outbox
 			 /* Overrides value in filename statement */
-			to=('elsa.c.haynes@kp.org','chad.x.hollingsworth@kp.org','abhishek.x8.kumar@kp.org')
+			to=(##MASKED##)
 			subject=" FAILURE: Exec Get_Twitter_Data_Weekly Manual Process"
 /*			attach=("&attach2." CT="text/plain" EXT="txt")*/
 			;
@@ -1501,7 +1501,7 @@ data look; set twitter.twitter_clean; rename 'Ad name'n = Ad_Name Objective = Ca
 			file outbox
 
 			 /* Overrides value in filename statement */
-			to=('elsa.c.haynes@kp.org','chad.x.hollingsworth@kp.org','abhishek.x8.kumar@kp.org')
+			to=(##MASKED##)
 			subject=" FAILURE: Exec Get_LinkedIn_Data_Weekly Monday 11:00PM"
 /*			attach = ("&attach2." CT="text/plain" EXT="txt")*/
 			;

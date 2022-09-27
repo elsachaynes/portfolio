@@ -21,10 +21,10 @@
 /*  Libraries                                                                                       */
 /* -------------------------------------------------------------------------------------------------*/
 
-%let nuid = /* enter ur nuid here */;
+	
 	* Input;
-	%include '/gpfsFS2/home/c156934/password.sas';
-
+	%let nuid = /* enter  nuid here */;
+	%include '/gpfsFS2/home/&nuid/password.sas';
 	libname MARS sqlsvr DSN='SQLSVR4685' SCHEMA='dbo' user="CS\&nuid" password="&winpwd"
 	     qualifier='MARS' readbuff=5000 insertbuff=5000 dbcommit=1000; run;
 	libname WS sqlsvr datasrc='WS_NYDIA' SCHEMA='dbo' user="CS\&nuid" password="&winpwd"
@@ -36,7 +36,7 @@
 
 
 	* Output;
-	%let output_files = /gpfsFS2/sasdata/nfs/ndc_grid/po_imca_digital/EHaynes/__Models/KPIF_EmailTargeting_2022;
+	%let output_files = ##MASKED##;
 	libname output "&output_files";
 
 /* -------------------------------------------------------------------------------------------------*/

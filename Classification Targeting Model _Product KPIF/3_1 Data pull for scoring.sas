@@ -4,14 +4,15 @@
 /* -------------------------------------------------------------------------------------------------*/
 
 	* Input;
-	%include '/gpfsFS2/home/c156934/password.sas';
-	libname MARS sqlsvr DSN='SQLSVR4685' SCHEMA='dbo' user="CS\C156934" password="&winpwd"
+	%let nuid = ##MASKED##;
+	%include '/gpfsFS2/home/&nuid./password.sas';
+	libname MARS sqlsvr DSN='SQLSVR4685' SCHEMA='dbo' user="CS\&nuid." password="&winpwd"
 	     qualifier='MARS' readbuff=5000 insertbuff=5000 dbcommit=1000; run;
-	libname WS sqlsvr datasrc='WS_NYDIA' SCHEMA='dbo' user="CS\C156934" password="&winpwd"
+	libname WS sqlsvr datasrc='WS_NYDIA' SCHEMA='dbo' user="CS\&nuid." password="&winpwd"
 	     qualifier='WS_EHAYNES' readbuff=5000 insertbuff=5000 dbcommit=1000; run;
-	libname ESRI sqlsvr DSN='WS_NYDIA' SCHEMA='dbo' user="CS\C156934" password="&winpwd"
+	libname ESRI sqlsvr DSN='WS_NYDIA' SCHEMA='dbo' user="CS\&nuid." password="&winpwd"
 	     qualifier='ESRI_TAPESTRY' readbuff=5000 insertbuff=5000 dbcommit=1000; run;
-	libname ELARA sqlsvr DSN='SQLSVR4656' SCHEMA='dbo' user="CS\C156934" password="&winpwd"
+	libname ELARA sqlsvr DSN='SQLSVR4656' SCHEMA='dbo' user="CS\&nuid." password="&winpwd"
      	qualifier='ELARA' readbuff=5000 insertbuff=5000 dbcommit=1000; run;
 
 /* -------------------------------------------------------------------------------------------------*/
@@ -25,7 +26,7 @@
 	%let Model_Name = NATIONAL KPIF OE EM ENROLLMENT MODEL;
 
 	* Output;
-	%let output_files = /gpfsFS2/sasdata/nfs/ndc_grid/po_imca_digital/EHaynes/__Models/KPIF_EmailTargeting_2022;
+	%let output_files = ##MASKED##;
 	%let output_files = &output_files./&Scoring_Folder_Nm.;
 	libname output "&output_files";
 

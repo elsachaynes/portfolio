@@ -5,7 +5,7 @@
 /*  Promo IDs                                                                                       */
 /* -------------------------------------------------------------------------------------------------*/
 
-/* Medicare Direct Mail Prospect Targeting Model for SEP 2021 (12/8/2020-9/30/2021) + AEP 2022 (10/1/2021-12/7/2021) */
+/* Medicare Direct Mail Prospect Targeting Model for SEP 2021 (##MASKED##) + AEP 2022 (##MASKED##) */
 	SELECT DISTINCT
 		Inhome_Date
 	,	Region

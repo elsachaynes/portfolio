@@ -21,7 +21,7 @@
 			attachFreqTableFlag=0,
 			attachLogFlag=0,
 			sentFrom='elsa.c.haynes@kp.org',
-			sentTo=('elsa.c.haynes@kp.org','smriti.malla@kp.org','niki.z.petrakos@kp.org')
+			sentTo=(##MASKED##)
 			);
 
 	%if &attachFreqTableFlag = 1 %then %do;

@@ -57,7 +57,7 @@ options source2 orientation=portrait;
 /*  Libraries.                                                                                      */
 /* -------------------------------------------------------------------------------------------------*/
 
-%let output_file_path= /gpfsFS2/sasdata/nfs/ndc_grid/po_imca_digital/EHaynes/B2B DNB Visitor Intelligence Data Append;
+%let output_file_path= ##MASKED##;
 libname ga "&output_file_path"; 
 
 /* -------------------------------------------------------------------------------------------------*/

@@ -23,7 +23,7 @@
 /*  Libraries                                                                                       */
 /* -------------------------------------------------------------------------------------------------*/
 
-	%let nuid =  c156934;
+	%let nuid =  ##MASKED##;
 
 	* Input;
 	%include "/gpfsFS2/home/&nuid./password.sas";
@@ -39,7 +39,7 @@
 	    qualifier='WS_JSKELLY' readbuff=5000 insertbuff=5000 dbcommit=1000; run;
 
 	* Output;
-	%let output_files = /gpfsFS2/sasdata/nfs/ndc_grid/po_imca_digital/EHaynes/__Models/KPIF_EmailTargeting_2022;
+	%let output_files = ##MASKED##;
 	libname output "&output_files";
 
 /* -------------------------------------------------------------------------------------------------*/

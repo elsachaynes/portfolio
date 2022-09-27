@@ -28,52 +28,6 @@ library(ROSE) # Over/Under Sampling
 setwd("C:/Users/c156934") # Set file path
 source("//cs.msds.kp.org/scal/REGS/share15/KPIF_Analytics/Elsa/_Scripts for GitHub/portfolio/Modules/Classification_Model_Variable_Selection.R") 
 
-# Remove var
-#remove <- "DLVR_PCT"
-#FM_Off = import_csv('T14_FM_Off_Sample')  
-#FM_On = import_csv('T15_FM_On_Sample')  
-#RW_Off = import_csv('T16_RW_Off_Sample')  
-#RW_On = import_csv('T17_RW_On_Sample')  
-#FM_Off <- subset(FM_Off,select = names(FM_Off) %ni% remove)
-#FM_On <- subset(FM_On,select = names(FM_On) %ni% remove)
-#RW_Off <- subset(RW_Off,select = names(RW_Off) %ni% remove)
-#RW_On <- subset(RW_On,select = names(RW_On) %ni% remove)
-#data.table::fwrite(FM_Off,file='T14_FM_Off_Sample.csv') 
-#data.table::fwrite(FM_On,file='T15_FM_On_Sample.csv') 
-#data.table::fwrite(RW_Off,file='T16_RW_Off_Sample.csv') 
-#data.table::fwrite(RW_On,file='T17_RW_On_Sample.csv')
-#remove(FM_Off)
-#remove(FM_On)
-#remove(RW_Off)
-#remove(RW_On)
-#demog = import_csv('T13_Rollup_Demog') 
-#demog <- subset(demog,select = names(demog) %ni% remove)
-#data.table::fwrite(demog,file='T13_Rollup_Demog.csv')
-#remove(demog)
-#remove(remove)
-
-# Forgot to remove these earlier! Run once.
-#remove <- names(which(colSums(is.na(RW_On))>0)) #var with missing
-#FM_Off <- subset(FM_Off,select = names(FM_Off) %ni% remove)
-#FM_On <- subset(FM_On,select = names(FM_On) %ni% remove)
-#RW_Off <- subset(RW_Off,select = names(RW_Off) %ni% remove)
-#RW_On <- subset(RW_On,select = names(RW_On) %ni% remove)
-#data.table::fwrite(FM_Off,file='T14_FM_Off_Sample.csv') 
-#data.table::fwrite(FM_On,file='T15_FM_On_Sample.csv') 
-#data.table::fwrite(RW_Off,file='T16_RW_Off_Sample.csv') 
-#data.table::fwrite(RW_On,file='T17_RW_On_Sample.csv') 
-
-# Forgot to remove these earlier! Run once.
-#RW_Off = import_csv('T16_RW_Off_Sample')  # 170,759 rows
-#RW_On = import_csv('T17_RW_On_Sample')  # 170,759 rows
-#RW_Off <- RW_Off[RW_Off$FM_TENURE_DY == 0,] # no FM tenure for RW. 167,800 rows
-#RW_On <- RW_On[RW_On$FM_TENURE_DY == 0,] # no FM tenure for RW. 167,800 rows
-#FMCols <- c("FM_TENURE_DY","FM_TENURE_MO","FM_TENURE_YR")
-#RW_Off <- subset(RW_Off,select = names(RW_Off) %ni% FMCols)
-#RW_On <- subset(RW_On,select = names(RW_On) %ni% FMCols)
-#data.table::fwrite(RW_Off,file='T16_RW_Off_Sample.csv') 
-#data.table::fwrite(RW_On,file='T17_RW_On_Sample.csv') 
-
 # %% Remove columns that need to be kept in the final set
 ListReportingCols <- c('AGLTY_INDIV_ID', 'OE_Season', 'Audience_CY',
                        'Treatment_Flag', 'Timing_Main_Flag', 'Timing_Late_Flag',

@@ -21,12 +21,13 @@
 /*  Libraries.                                                                                      */
 /* -------------------------------------------------------------------------------------------------*/
 
-	%let vi_file_path= /gpfsFS2/sasdata/nfs/ndc_grid/po_imca_digital/EHaynes/B2B DNB Visitor Intelligence Data Append;
+	%let vi_file_path= ##MASKED##;
 	libname vi "&vi_file_path"; 
 
 	* SalesConnect SQL Server;
-	%include '/gpfsFS2/home/c156934/password.sas';
-	libname sc1 sqlsvr datasrc='SQLSVR0800' SCHEMA='dbo' user="CS\C156934" password="&winpwd"
+	%let nuid = ##MASKED##;
+	%include '/gpfsFS2/home/&nuid./password.sas';
+	libname sc1 sqlsvr datasrc='SQLSVR0800' SCHEMA='dbo' user="CS\&nuid." password="&winpwd"
 	qualifier='SALESFORCE_BACKUP';
 
 /* -------------------------------------------------------------------------------------------------*/

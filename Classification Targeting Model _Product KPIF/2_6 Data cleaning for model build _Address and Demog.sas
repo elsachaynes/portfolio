@@ -23,7 +23,7 @@
 /* -------------------------------------------------------------------------------------------------*/
 
 	* Output;
-	%let output_files = /gpfsFS2/sasdata/nfs/ndc_grid/po_imca_digital/EHaynes/__Models/KPIF_EmailTargeting_2022;
+	%let output_files = ##MASKED##;
 	libname output "&output_files";
 
 /* -------------------------------------------------------------------------------------------------*/
